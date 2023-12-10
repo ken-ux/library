@@ -42,7 +42,13 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function clearTable() {
+  let table_header = document.querySelector("tr");
+  table.replaceChildren(table_header);
+}
+
 function displayBooksToTable() {
+  clearTable();
   myLibrary.forEach((book) => {
     let table_row = document.createElement("tr");
     for (const property in book) {
