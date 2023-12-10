@@ -1,11 +1,28 @@
 const myLibrary = [];
 const table = document.querySelector("table");
 const newBookButton = document.querySelector(".new-book");
+const form = document.querySelector("form");
 
 newBookButton.addEventListener("click", () => {
-    let dialog = document.querySelector("dialog");
-    dialog.setAttribute("open", "");
-})
+  let dialog = document.querySelector("dialog");
+  dialog.setAttribute("open", "");
+});
+
+form.addEventListener("submit", () => {
+  const formData = new FormData(form);
+  let title = formData.get("title");
+  let author = formData.get("author");
+  let pages = formData.get("pages");
+  let read = formData.get("read");
+  if (read === "true") {
+    read = true;
+  } else {
+    read = false;
+  }
+  let book = new Book(title, author, pages, read);
+  addBookToLibrary(book);
+  displayBooksToTable();
+});
 
 function Book(title, author, pages, read) {
   this.title = title;
