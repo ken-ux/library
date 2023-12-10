@@ -74,8 +74,14 @@ function displayBooksToTable() {
 }
 
 Book.prototype.remove = function () {
-  console.log(this.data_attribute);
-  myLibrary.splice(this.data_attribute, 1);
+  let position;
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (myLibrary[i].data_attribute === this.data_attribute) {
+      position = i;
+      break;
+    }
+  }
+  myLibrary.splice(position, 1);
   displayBooksToTable();
 };
 
