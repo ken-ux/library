@@ -53,8 +53,17 @@ function displayBooksToTable() {
   clearTable();
   myLibrary.forEach((book) => {
     let table_row = document.createElement("tr");
+    let table_functions = ["remove", "changeReadStatus"];
+    for (let i = 0; i < table_functions.length; i++) {
+      let table_data = document.createElement("td");
+      let button = document.createElement("button");
+      button.addEventListener("click", book[table_functions[i]].bind(book));
+      button.textContent = "Click Me";
+      table_data.appendChild(button);
+      table_row.appendChild(table_data);
+    }
     let table_properties = ["title", "author", "pages", "read"];
-    for (i = 0; i < table_properties.length; i++) {
+    for (let i = 0; i < table_properties.length; i++) {
       let table_data = document.createElement("td");
       let table_content = book[table_properties[i]];
       table_data.textContent = table_content;
@@ -65,11 +74,14 @@ function displayBooksToTable() {
 }
 
 Book.prototype.remove = function () {
+  console.log(this.data_attribute);
   myLibrary.splice(this.data_attribute, 1);
+  displayBooksToTable();
 };
 
 Book.prototype.changeReadStatus = function () {
   this.read = !this.read;
+  displayBooksToTable();
 };
 
 let theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
