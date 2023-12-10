@@ -17,9 +17,28 @@
       </tr>
     </table>
     <button class="new-book">New Book</button>
-    <dialog>
+    <dialog open>
       <form action="" method="dialog">
-        Test Form
+        <h1>Add a New Book</h1>
+        <div>
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" />
+        </div>
+        <div>
+          <label for="author">Author</label>
+          <input type="text" id="author" name="author" />
+        </div>
+        <div>
+          <label for="pages">Pages</label>
+          <input type="number" id="pages" name="pages" />
+        </div>
+        <div>
+          <label for="read">Read Yet?</label>
+          <select name="read" id="read">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
         <button type="submit">Submit</button>
       </form>
     </dialog>
