@@ -1,5 +1,11 @@
 const myLibrary = [];
 const table = document.querySelector("table");
+const newBookButton = document.querySelector(".new-book");
+
+newBookButton.addEventListener("click", () => {
+    let dialog = document.querySelector("dialog");
+    dialog.setAttribute("open", "");
+})
 
 function Book(title, author, pages, read) {
   this.title = title;
