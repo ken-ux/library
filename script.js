@@ -1,4 +1,5 @@
 const myLibrary = [];
+const table = document.querySelector("table");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -14,9 +15,25 @@ function Book(title, author, pages, read) {
   };
 }
 
-let theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-console.log(theHobbit.info());
-
 function addBookToLibrary(book) {
-    myLibrary.push(book);
+  myLibrary.push(book);
 }
+
+function displayBooksToTable() {
+  myLibrary.forEach((book) => {
+    let table_row = document.createElement("tr");
+    for (const property in book) {
+      if (property !== "info") {
+        let table_data = document.createElement("td");
+        table_data.textContent = book[property];
+        table_row.appendChild(table_data);
+      }
+    }
+    table.appendChild(table_row);
+  });
+}
+
+let theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
+
+addBookToLibrary(theHobbit);
+displayBooksToTable();
