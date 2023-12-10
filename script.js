@@ -14,6 +14,7 @@ form.addEventListener("submit", () => {
   let author = formData.get("author");
   let pages = formData.get("pages");
   let read = formData.get("read");
+  // Form sends value as string, not boolean, so have to convert
   if (read === "true") {
     read = true;
   } else {
@@ -29,6 +30,7 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.data_attribute = myLibrary.length;
   this.info = function () {
     let book_read = "not read yet";
     if (this.read) {
@@ -61,6 +63,14 @@ function displayBooksToTable() {
     table.appendChild(table_row);
   });
 }
+
+Book.prototype.remove = function () {
+  myLibrary.splice(this.data_attribute, 1);
+};
+
+Book.prototype.changeReadStatus = function () {
+  this.read = !this.read;
+};
 
 let theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 
