@@ -53,12 +53,12 @@ function displayBooksToTable() {
   clearTable();
   myLibrary.forEach((book) => {
     let table_row = document.createElement("tr");
-    for (const property in book) {
-      if (property !== "info") {
-        let table_data = document.createElement("td");
-        table_data.textContent = book[property];
-        table_row.appendChild(table_data);
-      }
+    let table_properties = ["title", "author", "pages", "read"];
+    for (i = 0; i < table_properties.length; i++) {
+      let table_data = document.createElement("td");
+      let table_content = book[table_properties[i]];
+      table_data.textContent = table_content;
+      table_row.appendChild(table_data);
     }
     table.appendChild(table_row);
   });
