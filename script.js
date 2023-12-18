@@ -25,13 +25,15 @@ form.addEventListener("submit", () => {
   displayBooksToTable();
 });
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.data_attribute = myLibrary.length;
-  this.info = function () {
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.data_attribute = myLibrary.length;
+  }
+  info = function () {
     let book_read = "not read yet";
     if (this.read) {
       book_read = "already read";
