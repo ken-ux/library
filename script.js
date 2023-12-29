@@ -8,7 +8,34 @@ newBookButton.addEventListener("click", () => {
   dialog.setAttribute("open", "");
 });
 
-form.addEventListener("submit", () => {
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const constraintInputs = [titleInput, authorInput, pagesInput];
+
+function validate() {
+  if (titleInput.validity.valueMissing) {
+    titleInput.setCustomValidity("Enter a title.");
+    titleInput.reportValidity();
+    return false;
+  }
+
+  if (authorInput.validity.valueMissing) {
+    authorInput.setCustomValidity("Enter an author.");
+    authorInput.reportValidity();
+    return false;
+  }
+
+  if (pagesInput.validity.valueMissing) {
+    pagesInput.setCustomValidity("Enter the number of pages.");
+    pagesInput.reportValidity();
+    return false;
+  }
+
+  return true;
+}
+
+function sendFormData() {
   const formData = new FormData(form);
   let title = formData.get("title");
   let author = formData.get("author");
@@ -23,6 +50,14 @@ form.addEventListener("submit", () => {
   let book = new Book(title, author, pages, read);
   addBookToLibrary(book);
   displayBooksToTable();
+}
+
+form.addEventListener("submit", (event) => {
+  if (!validate()) {
+    event.preventDefault();
+  } else {
+    sendFormData();
+  }
 });
 
 class Book {
